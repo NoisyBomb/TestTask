@@ -3,4 +3,4 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
-C:\Users\vladi\RiderProjects\TestApp\TestApp\appsettings.Development.json
+appsettings.Development.json
