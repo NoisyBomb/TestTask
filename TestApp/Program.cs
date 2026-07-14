@@ -21,8 +21,6 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddOpenApi();
-
 var app = builder.Build();
 
 
@@ -31,17 +29,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "TestApp API v1");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "TestApp API");
         options.RoutePrefix = "swagger";
     });
-    app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
 
 app.UseCors();
-
-app.UseExceptionHandler("/error");
 
 app.MapControllers();
 
