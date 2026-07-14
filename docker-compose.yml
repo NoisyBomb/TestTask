@@ -15,6 +15,7 @@
     build: ./TestApp
     restart: unless-stopped
     environment:
+      ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: "Host=db;Port=5432;Database=testapp;Username=postgres;Password=changeme"
     ports:
       - "5220:8080"
