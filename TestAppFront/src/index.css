@@ -1,0 +1,492 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --ink: #1b2430;
+  --ink-soft: #3a4453;
+  --paper: #f1ecdd;
+  --paper-raised: #faf7ee;
+  --paper-line: #d9cfb2;
+  --stamp: #c1440e;
+  --stamp-dark: #9c3509;
+  --confirm: #3f6c51;
+  --danger: #a53a3a;
+  --danger-bg: #f6e6e2;
+  --muted: #6b6357;
+
+  --font-body: 'Public Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  background-image: linear-gradient(180deg, var(--paper) 0%, #eee7d3 100%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+a {
+  color: var(--stamp-dark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--stamp-dark);
+  outline-offset: 2px;
+}
+
+/* ---------- Shell / header ---------- */
+
+.shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 28px 24px 64px;
+}
+
+.shell__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 18px;
+  margin-bottom: 36px;
+}
+
+.shell__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.shell__brand-mark {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.shell__brand-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.shell__brand-sub {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.shell__nav {
+  display: flex;
+  gap: 8px;
+}
+
+.shell__nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1.5px solid transparent;
+}
+
+.shell__nav a:hover {
+  border-color: var(--paper-line);
+}
+
+.shell__nav a.is-active {
+  background: var(--ink);
+  color: var(--paper-raised);
+}
+
+/* ---------- Page shell ---------- */
+
+.page {
+  animation: fade-in 180ms ease-out;
+}
+
+.page--narrow {
+  max-width: 640px;
+}
+
+.page__head {
+  margin-bottom: 28px;
+}
+
+.page__head h1 {
+  margin: 6px 0 4px;
+  font-size: 1.7rem;
+  letter-spacing: -0.01em;
+}
+
+.page__lede {
+  margin: 0;
+  color: var(--muted);
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 4px;
+}
+
+.back-link:hover {
+  color: var(--stamp-dark);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Status banners ---------- */
+
+.status {
+  border: 1.5px dashed var(--paper-line);
+  border-radius: 10px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--paper-raised);
+}
+
+.status p {
+  margin: 0;
+}
+
+.status--error {
+  border-style: solid;
+  border-color: var(--danger);
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+.status--empty {
+  border-style: solid;
+}
+
+/* ---------- Ledger table (orders list) ---------- */
+
+.ledger {
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--paper-raised);
+}
+
+.ledger__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.ledger__table thead th {
+  text-align: left;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 12px 16px;
+  border-bottom: 1.5px solid var(--ink);
+  white-space: nowrap;
+}
+
+.ledger__table tbody tr {
+  cursor: pointer;
+  border-bottom: 1px solid var(--paper-line);
+  transition: background-color 120ms ease;
+}
+
+.ledger__table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.ledger__table tbody tr:hover,
+.ledger__table tbody tr:focus-visible {
+  background-color: #ece2c6;
+}
+
+.ledger__table td {
+  padding: 13px 16px;
+  vertical-align: top;
+}
+
+/* ---------- Order stamp (signature element) ---------- */
+
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--stamp-dark);
+  border: 1.5px solid var(--stamp);
+  border-radius: 4px;
+  padding: 3px 8px;
+  letter-spacing: 0.02em;
+  transform: rotate(-1.5deg);
+  white-space: nowrap;
+}
+
+.stamp--lg {
+  font-size: 1.2rem;
+  padding: 8px 16px;
+  transform: rotate(-2deg);
+}
+
+/* ---------- Forms ---------- */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form__group {
+  border: 1.5px solid var(--paper-line);
+  border-radius: 10px;
+  padding: 18px 20px 6px;
+  margin: 0;
+  background: var(--paper-raised);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form__group legend {
+  padding: 0 6px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.field input {
+  border: 1.5px solid var(--paper-line);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--ink);
+}
+
+.field input:focus {
+  border-color: var(--stamp);
+}
+
+.field input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.field__error {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--danger);
+}
+
+.form__error {
+  margin: 0;
+  padding: 12px 16px;
+  border: 1.5px solid var(--danger);
+  border-radius: 8px;
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 0.9rem;
+}
+
+.form__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  font-weight: 600;
+  font-size: 0.92rem;
+  border-radius: 7px;
+  padding: 10px 20px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn--primary {
+  background: var(--stamp);
+  color: #fff8ee;
+}
+
+.btn--primary:hover {
+  background: var(--stamp-dark);
+}
+
+.btn--primary:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  background: var(--ink);
+  color: var(--paper-raised);
+}
+
+/* ---------- Waybill (order details) ---------- */
+
+.waybill {
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  background: var(--paper-raised);
+  padding: 26px 28px 30px;
+  position: relative;
+}
+
+.waybill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  height: 0;
+  border-top: 1.5px dashed var(--paper-line);
+}
+
+.waybill__stamp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.waybill__tag {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--confirm);
+  border: 1px solid var(--confirm);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.waybill__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 28px;
+}
+
+.waybill__block {
+  border-top: 1px solid var(--paper-line);
+  padding-top: 12px;
+}
+
+.waybill__label {
+  margin: 0 0 4px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.waybill__value {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.waybill__value--muted {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 2px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .shell {
+    padding: 20px 16px 48px;
+  }
+
+  .ledger {
+    overflow-x: auto;
+  }
+
+  .ledger__table {
+    min-width: 720px;
+  }
+
+  .waybill__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page {
+    animation: none;
+  }
+}
