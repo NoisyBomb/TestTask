@@ -1,1 +1,3 @@
 ﻿TestAppFront/** linguist-vendored
+*.ts linguist-vendored
+*.tsx linguist-vendored
